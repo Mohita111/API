@@ -1,0 +1,11 @@
+site_name: AWS Documentation
+
+nav:
+  - Home: index.md
+  - What is Amazon VPC: What is Amazon VPC.md
+  - How Amazon VPC works: How Amazon VPC works.md
+  - List Operating System: List Operating System.md
+  - Retrieve Operating System: Retrieve Operating System.md
+
+theme:
+  name: material
