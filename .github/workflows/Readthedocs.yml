@@ -1,19 +1,36 @@
-name: Deploy to ReadTheDocs
+name: Deploy Documentation
 
 on:
   push:
     branches:
-      - main
+      - main  # Trigger deployment when changes are pushed to main
+
+permissions:
+  contents: write  # Required for pushing to gh-pages
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install mkdocs
-        run: pip install mkdocs mkdocs-material
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-      - name: Deploy Docs
-        run: mkdocs gh-deploy --force
+      - name: Install MkDocs and dependencies
+        run: |
+          pip install mkdocs-material
+
+      - name: Configure GitHub Credentials
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/Mohita111/API.git
+
+      - name: Deploy to GitHub Pages
+        run: |
+          mkdocs gh-deploy --force
