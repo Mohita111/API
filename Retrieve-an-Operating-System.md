@@ -9,7 +9,7 @@ This request retrieves a single operating system specified by the name in the UR
 #### **Path Parameters**
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
-| `name` | ✅ | string | The operating system name |
+| `name` | ✅ | string | This is the name of operating system|
 
 - **Possible values:** 1 ≤ length ≤ 63, matches regex: `^([a-z]|[a-z][-a-z0-9]*[a-z0-9]|[0-9][-a-z0-9]*([a-z]|[-a-z][-a-z0-9]*[a-z0-9]))$`
 - **Example:** `red-7-amd64`
