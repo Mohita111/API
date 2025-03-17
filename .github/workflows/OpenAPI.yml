@@ -1,0 +1,23 @@
+name: Generate API Docs
+
+on:
+  push:
+    paths:
+      - "docs/api/*.md"
+
+jobs:
+  api-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Convert Markdown to OpenAPI JSON
+        run: |
+          npx @redocly/cli bundle docs/api/openapi.md -o public/openapi.json
+
+      - name: Deploy API Docs
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: public
