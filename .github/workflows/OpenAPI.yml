@@ -1,23 +1,22 @@
-name: Generate API Docs
+name: Documentation Deployment
 
 on:
   push:
+    branches:
+      - main  # Only trigger on changes to the main branch
     paths:
-      - "docs/api/*.md"
+      - "docs/api/*.md"  # Only trigger when files inside docs/api/ change
 
 jobs:
-  api-docs:
+  deploy-docs:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Convert Markdown to OpenAPI JSON
-        run: |
-          npx @redocly/cli bundle docs/api/openapi.md -o public/openapi.json
+      - name: Install MkDocs
+        run: pip install mkdocs mkdocs-material
 
-      - name: Deploy API Docs
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: public
+      - name: Build and Deploy Documentation
+        run: mkdocs gh-deploy --force
