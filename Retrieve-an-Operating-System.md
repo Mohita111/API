@@ -1,4 +1,4 @@
-# Retrieve Operating System
+# Retrieve an Operating System
 
 This request retrieves a single operating system specified by the name in the URL.
 
