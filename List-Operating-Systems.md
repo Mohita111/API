@@ -1,6 +1,6 @@
 # List Operating Systems
 
-This request lists operating systems in the region.
+This request lists operating systems in all the regions.
 
 ## **GET /operating_systems**
 
@@ -51,7 +51,7 @@ curl -X GET "$vpc_api_endpoint/v1/operating_systems?version=2025-03-11&generatio
 
 | Code | Description |
 |------|-------------|
-| 200  | The operating systems were retrieved successfully. |
+| 200  | The operating system was retrieved successfully. |
 
 ---
 
