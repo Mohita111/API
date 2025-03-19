@@ -1,0 +1,16 @@
+name: Convert MD to PDF
+
+on: [push, pull_request]
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Pandoc
+        run: sudo apt install pandoc
+
+      - name: Convert Markdown to PDF
+        run: pandoc docs/index.md -o docs/index.pdf
