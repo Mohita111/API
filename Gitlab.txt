@@ -1,0 +1,103 @@
+GitLab vs. GitHub: Key Differences for Technical Writers
+
+While GitLab and GitHub both offer Git-based version control, CI/CD, and collaboration features, GitLab is a complete DevOps platform, whereas GitHub relies on integrations with third-party tools for some functionalities.
+
+Below are the key differences relevant to a technical writer:
+
+1️⃣ Built-in CI/CD: GitLab vs. GitHub Actions
+Feature	GitLab	GitHub
+CI/CD	Built-in GitLab CI/CD with .gitlab-ci.yml	Requires GitHub Actions (separate setup)
+Free Runners	Free shared runners with limited minutes	Free runners with limited minutes
+Self-hosted Runners	Available for free	Available for free
+📌 Key Difference:
+
+GitLab integrates CI/CD natively (in one tool), whereas GitHub needs GitHub Actions, which requires extra setup and YAML configuration.
+If you need automated documentation deployment (e.g., MkDocs, Sphinx), GitLab CI/CD is more seamless.
+🔹 Example:
+GitHub Actions (.github/workflows/deploy.yml):
+
+yaml
+Copy
+Edit
+name: Deploy Docs
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install MkDocs
+        run: pip install mkdocs-material
+      - name: Build & Deploy
+        run: mkdocs gh-deploy --force
+GitLab CI/CD (.gitlab-ci.yml):
+
+yaml
+Copy
+Edit
+deploy_docs:
+  stage: deploy
+  image: python:3.9
+  script:
+    - pip install mkdocs-material
+    - mkdocs build
+    - mkdocs gh-deploy --force
+  only:
+    - main
+👉 GitLab simplifies CI/CD by keeping everything inside one platform.
+
+2️⃣ Project Management & Issue Tracking
+Feature	GitLab	GitHub
+Issue Tracking	Built-in Agile-style issue tracking	Issues & Discussions (less structured)
+Epics & Roadmaps	✅ Yes (Paid)	❌ No
+Built-in Kanban Boards	✅ Yes	✅ Yes
+Merge Request Approvals	✅ Yes	✅ Yes
+📌 Key Difference:
+
+GitLab has more advanced issue tracking, epics, and roadmaps, making it better for large-scale documentation projects.
+GitHub offers issues & discussions but lacks epics and roadmaps unless you integrate third-party tools like ZenHub or Jira.
+🔹 Example Use Case for Technical Writers:
+GitLab:
+
+Track documentation tasks as issues
+Organize documentation milestones using Epics & Roadmaps
+Automate issue tracking with CI/CD
+3️⃣ Self-Hosting & Security
+Feature	GitLab	GitHub
+Self-hosting	✅ Yes (GitLab Self-Managed)	❌ No (Only GitHub Enterprise Cloud)
+Free Private Repos	✅ Yes	✅ Yes
+Advanced Permissions	✅ Yes (More granular control)	✅ Yes
+📌 Key Difference:
+
+GitLab allows self-hosting, making it ideal for internal documentation in large enterprises.
+GitHub requires GitHub Enterprise Cloud for similar self-hosted functionality.
+🔹 Example Use Case for Technical Writers:
+If you're documenting internal APIs for a corporate intranet, GitLab self-hosting ensures confidentiality & security.
+
+4️⃣ Documentation Wikis
+Feature	GitLab	GitHub
+Built-in Wiki	✅ Yes	✅ Yes
+📌 No major difference here. Both support wikis, which can be used for internal documentation.
+
+5️⃣ Code Review & Collaboration
+Feature	GitLab	GitHub
+Merge Requests (MRs)	✅ Yes (Native)	✅ Yes (Pull Requests)
+Inline Comments	✅ Yes	✅ Yes
+Suggest Changes	✅ Yes	✅ Yes
+Protected Branches	✅ Yes	✅ Yes
+📌 No major difference for a technical writer. Both support reviewing and merging documentation updates effectively.
+
+🔍 When to Choose GitLab vs. GitHub?
+Use Case	Choose GitLab	Choose GitHub
+CI/CD for docs	✅ Built-in GitLab CI/CD	✅ GitHub Actions (extra setup)
+Self-hosted Docs	✅ Yes	❌ No
+Enterprise Use	✅ Best for private/internal docs	✅ Best for open-source docs
+Project Management	✅ Advanced issue tracking	✅ Good but requires integrations
+🚀 Final Verdict for Technical Writers
+If you want an all-in-one DevOps tool with built-in CI/CD and project management, GitLab is the better choice.
+If you're contributing to open-source projects or prefer GitHub Actions, GitHub is better.
+Would you like help setting up a GitLab or GitHub documentation workflow?
