@@ -1,0 +1,16 @@
+name: Markdown Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Markdown Linter
+        run: npm install -g markdownlint-cli
+
+      - name: Run Linter
+        run: markdownlint "**/*.md"
